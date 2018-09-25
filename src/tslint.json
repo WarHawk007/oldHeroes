@@ -12,6 +12,12 @@
             "element",
             "app",
             "kebab-case"
+        ],
+      "compilerOptions": {
+        "plugins": [
+          { "name": "tslint-language-service"}
         ]
+      }
+
     }
 }
