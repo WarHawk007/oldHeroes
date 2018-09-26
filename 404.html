@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" >
+<head>
+  <meta charset="utf-8">
+  <title>Myheroes</title>
+  <base href="https://WarHawk007.github.io/Heroes/">  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
+  <script src="./assets/ajax.js"></script>
+  <script>
+    var ajaxExample = angular.module('heroes', []);
+    ajaxExample.controller('mainController', function($scope, $http){
+      $scope.hero={};
+      $scope.addHero = function() {
+        console.log($scope.hero);
+        $http({
+
+          method: 'POST',
+          url:  'http://localhost/heroapi/inserthero.php',
+          data: $scope.hero,
+          headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+
+        }).success(function (response) {
+          if(response.errors)
+          {
+            console.log(response.errors.not);
+          }
+
+        })
+      };
+    });
+  </script>
+<link rel="stylesheet" href="styles.9ea26ebd55073c38467f.css"></head>
+<body>
+  <app-root></app-root>
+<script>
+  $("document").ready(function()
+  {
+    $("#slideup").click(function () {
+      $("#addhero").slideUp( "slow", function()
+      {
+        console.log("dasdas");
+      });
+    });
+  });
+</script>
+<script type="text/javascript" src="runtime.ec2944dd8b20ec099bf3.js"></script><script type="text/javascript" src="polyfills.f6ae3e8b63939c618130.js"></script><script type="text/javascript" src="main.6c5d9d61acad9435e803.js"></script></body>
+</html>
