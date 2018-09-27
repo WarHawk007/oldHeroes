@@ -1,9 +1,65 @@
 
-  <ul *ngFor="let hero of heroes$">
-  <li>{{hero.name}}</li>
-  <!--<a routerLink="/details/{{hero.id}}">{{hero.name}}</a>-->
-  <!--<ul>-->
-    <!--<li>{{hero.email}}</li>-->
-    <!--<li><a href="http://{{hero.website}}">{{hero.website}}</a></li>-->
-  <!--</ul>-->
-</ul>
+<button id="showaddform" style="margin:2% 0 2% 40% ;width:80px;height:60px;font-size: 30px" class="btn btn-md btn-primary"
+        xmlns="http://www.w3.org/1999/html"><b>+</b>
+</button>
+
+<div class="row">
+  <div class="card text-black shadow-sm bg-Secondary col-sm-8 offset-sm-2" style="" id="addhero">
+    <div class="card-header">Add Your Favourite Hero</div>
+    <div class="card-body">
+      <div ng-controller="mainController" class="col-sm-12">
+        <div class="row" >
+          <form [formGroup]= "addHeroForm" (ngSubmit)="addnewHero()" class="form-horizontal offset-sm-2 col-sm-10"  >
+            <div class="alert alert-success" *ngIf="check==true">
+              <strong>Success</strong>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="name">Name:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" formControlName= "name" id="name" placeholder="Enter Name" required>
+                <div *ngIf="addHeroForm.get('name').touched && addHeroForm.get('name').invalid" class="alert alert-warning">
+                  <strong>Can't Be Empty</strong>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="imgsrc">Image Url:</label>
+              <div class="col-sm-10">
+                <input type="url" class="form-control" formControlName= "imgsrc" id="imgsrc" placeholder="Enter Image Url" name="imgsrc" required>
+                <div *ngIf="addHeroForm.get('imgsrc').touched && addHeroForm.get('imgsrc').invalid" class="alert alert-warning">
+                  <strong>Can't Be Empty</strong>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="description">Description:</label>
+              <div class="col-sm-10">
+                <textarea class="form-control" formControlName= "description" id="description" placeholder="Enter Description" name="description" rows="5" required></textarea>
+                <div *ngIf="addHeroForm.get('description').touched && addHeroForm.get('description').invalid" class="alert alert-warning">
+                  <strong>Can't Be Empty</strong>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" class="btn btn-lg btn-primary" [disabled]="!addHeroForm.valid" value="ADD">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngFor="let hero of heroes$" class="card col-sm-3" style="margin:20px 20px 20px 80px;padding: 10px">
+    <img class="card-img-top img-thumbnail" src="{{hero.imgsrc}}" alt="Card image cap">
+    <div class="card-body">
+      <div class="row">
+      <h5 class="card-title col-sm-12">{{hero.name}}</h5>
+        <div class="col-sm-10" style="margin: 0 auto;">
+        <a routerLink="/details/{{hero.id}}" class="btn btn-primary col-sm-5">Details</a>
+        <button (click)="deletehero(hero)"  class="btn btn-primary col-sm-5">Delete</button>
+        </div>
+    </div>
+    </div>
+  </div>
+</div>

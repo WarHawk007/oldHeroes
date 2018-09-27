@@ -1,3 +1,46 @@
-<div *ngIf="hero$">
- <h1>{{hero$[0].name}}</h1>
+<div class="row">
+  <div *ngIf="hero$" class="card text-black shadow-sm bg-Secondary col-sm-8 offset-sm-2" style="margin-top:10px;margin-bottom:10px" id="updatehero">
+    <div class="card-header">Update Your Hero</div>
+    <img *ngIf="hero$" class="rounded card-img-top mx-auto d-block" width="50%" height="50%" src="{{hero$.imgsrc}}">
+    <div class="card-body">
+      <div ng-controller="updateHeroController" class="col-sm-12">
+        <div class="row" >
+          <form [formGroup]= "updateHeroForm" (ngSubmit)="updatehero()" class="form-horizontal offset-sm-2 col-sm-10"  >
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="name">Name:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" formControlName="name"  id="name" placeholder="Enter Name" required>
+                <div *ngIf="updateHeroForm.get('name').touched && updateHeroForm.get('name').invalid" class="alert alert-warning">
+                  <strong>Can't Be Empty</strong>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="imgsrc">Image Url:</label>
+              <div class="col-sm-10">
+                <input type="url" class="form-control" formControlName= "imgsrc" id="imgsrc" placeholder="Enter Image Url" name="imgsrc" required>
+                <div *ngIf="updateHeroForm.get('imgsrc').touched && updateHeroForm.get('imgsrc').invalid" class="alert alert-warning">
+                  <strong>Can't Be Empty</strong>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="description">Description:</label>
+              <div class="col-sm-10">
+                <textarea class="form-control" formControlName= "description" id="description" placeholder="Enter Description" name="description" rows="5" required></textarea>
+                <div *ngIf="updateHeroForm.get('description').touched && updateHeroForm.get('description').invalid" class="alert alert-warning">
+                  <strong>Can't Be Empty</strong>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" class="btn btn-lg btn-primary" [disabled]="!updateHeroForm.valid" value="Update">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
