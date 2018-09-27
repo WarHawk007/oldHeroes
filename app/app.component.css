@@ -1,0 +1,9 @@
+.nactive
+{
+  border-bottom: 4px solid #3498db;
+  color:#3498db;
+}
+.nactive.nav-link
+{
+  color:#3498db;
+}
