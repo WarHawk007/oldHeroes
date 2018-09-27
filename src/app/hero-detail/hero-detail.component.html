@@ -3,7 +3,7 @@
     <div class="card-header">Update Your Hero</div>
     <img *ngIf="hero$" class="rounded card-img-top mx-auto d-block" width="50%" height="50%" src="{{hero$.imgsrc}}">
     <div class="card-body">
-      <div ng-controller="updateHeroController" class="col-sm-12">
+      <div class="col-sm-12">
         <div class="row" >
           <form [formGroup]= "updateHeroForm" (ngSubmit)="updatehero()" class="form-horizontal offset-sm-2 col-sm-10"  >
             <div class="form-group">
